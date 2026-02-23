@@ -92,9 +92,10 @@ margin-bottom: 20px;
   margin: 20px 0;
 }
 #job-section .btn-container {
-  gap: 8px;
+  gap: 15px;
+  margin-bottom: 20px;
 }
-#allJob-btn {
+.allJob-btn {
   background-color: var(--accent);
   color: var(--whiteColor);
   border: none;
@@ -144,8 +145,44 @@ margin-bottom: 20px;
   color: var(--red);
   border: 2px solid var(--red);
 }
+.btn-container .checked-btn {
+  background-color: var(--accent);
+  color: var(--whiteColor);
+  border-color: var(--accent);
+}
+.focus-btn {
+  background-color: var(--accent);
+  color: var(--whiteColor);
+  border-color: var(--accent);
+  padding: 8px 12px;
+font-size: 14px;
+font-weight: 600;
+text-transform: uppercase;
+border: none;
+border-radius: 5px;
+padding: 10px 20px;
+box-shadow: 0 0 50px #fff4f4;
+}
+.normal-btn {
+background-color: var(--whiteColor); 
+color: var(--text);
+border-color: var(--whiteColor);
+padding: 8px 12px;
+font-size: 14px;
+font-weight: 600;
+text-transform: uppercase;
+border: none;
+border-radius: 5px;
+padding: 10px 20px;
+box-shadow: 0 0 50px #fff4f4;
+}
 
-.
+.hidden {
+  display: none;
+}
+.show {
+  display: block;
+}
 
 @media (max-width: 768px) {
 /* Header Section Design  */
