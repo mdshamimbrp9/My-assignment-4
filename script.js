@@ -34,7 +34,7 @@ function calculateJobPost() {
   total.innerText = allCard.children.length;
   interview.innerText = interViewList.length;
   rejected.innerText = rejectList.length;
-  // totalJob.innerText = allCard.children.length;
+  totalJob.innerText = allCard.children.length;
 }
 calculateJobPost()
 
@@ -56,21 +56,16 @@ function btnToggle(id) {
   const selected = document.getElementById(id);
   selected.classList.remove('normal-btn')
   selected.classList.add('focus-btn')
-
-
+  
   if (id === 'interview-btn') {
     allCard.style.display = 'none';
     filteredSection.classList.remove('hidden');
     renderInterview();
   }
-
  else if (id == 'allJob-btn') {
     allCard.style.display = 'block';
     filteredSection.classList.add('hidden');
   }
-
- 
-
  else if (id == 'rejected-btn') {
     allCard.style.display = 'none';
     filteredSection.classList.remove('hidden');

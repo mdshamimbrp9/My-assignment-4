@@ -1,0 +1,25 @@
+1. Difference between getElementById, getElementsByClassName, querySelector, querySelectorAll
+
+
+getElementById("id") → selects one element by id
+getElementsByClassName("class") → selects multiple elements by class 
+querySelector("selector") → selects first matching element
+querySelectorAll("selector") → selects all matching elements 
+
+
+2. How do you create and insert a new element into the DOM?
+create element → document.createElement()
+add content → innerText / innerHTML
+insert element → appendChild()
+
+
+3. What is Event Bubbling? How does it work?
+Event Bubbling means event goes from child → parent → document
+
+
+4. What is Event Delegation? Why is it useful?
+Event Delegation means adding event listener to parent instead of child
+
+
+5. Difference between preventDefault() and stopPropagation()
+preventDefault() stops default browser behavior
