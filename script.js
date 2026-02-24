@@ -1,5 +1,6 @@
 let interViewList = [];
 let rejectList = [];
+let currentStatus = 'all';
 
 //Header 3 button
 const total = document.getElementById('total');
@@ -50,6 +51,8 @@ function btnToggle(id) {
   allRejectedBtn.classList.add('normal-btn');
 
   const selected = document.getElementById(id);
+  let currentStatus = id;
+
   selected.classList.remove('normal-btn')
   selected.classList.add('focus-btn')
 
@@ -57,29 +60,74 @@ function btnToggle(id) {
   if (id == "interview-btn") {
     filteredSection.classList.remove('hidden');
     allCard.style.display = 'none';
-    console.log(filteredSection);
-    console.log(allCard);
+    // console.log(filteredSection);
+    // console.log(allCard);
   }
   else if (id == 'allJob-btn') {
     allCard.style.display = 'block';
     filteredSection.classList.add('hidden');
   }
+    
+  else if (id == 'rejected-btn') {
+    allCard.style.display = 'none';
+    filteredSection.classList.remove('hidden');
+  }
+
+
 }
 
 allCard.addEventListener('click', function (event) {
 
-  console.log(event.target.classList.contains('interview-btn'));
-  
 
-  if (event.target.classList.contains('interview-btn')) {
+ if (event.target.classList.contains('rejected-btn')) {
     const parentNode = event.target.parentNode.parentNode;
     const companyName = parentNode.querySelector('.company-name').innerText;
     const position = parentNode.querySelector('.position').innerText;
     const locationTypeSelery = parentNode.querySelector('.location-type-selery').innerText;
     const status = parentNode.querySelector('.status').innerText;
     const description = parentNode.querySelector('.description').innerText;
+
+    parentNode.querySelector('.status').innerText = 'Rejected';
+    parentNode.querySelector('.status').style.color = '#EF4444';
+    parentNode.querySelector('.status').style.border = '2px solid #EF4444';
+
+
+    const cardInfo = {
+      companyName,
+      position,
+      locationTypeSelery,
+      status: 'Rejected',
+      description
+    }
+
+    const interviewExist = rejectList.find(item => item.companyName === cardInfo.companyName);
+    if (!interviewExist) {
+      rejectList.push(cardInfo);
+    }
+   interViewList = interViewList.filter(item => item.companyName != cardInfo.companyName);
+
+  //  if (currentStatus === 'interview-btn') {
+  //    renderInterview;
+  //  }
    
+
+    calculateJobPost();
+    renderReject();
+ }
+  
+  
+ else if (event.target.classList.contains('interview-btn')) {
+    const parentNode = event.target.parentNode.parentNode;
+    const companyName = parentNode.querySelector('.company-name').innerText;
+    const position = parentNode.querySelector('.position').innerText;
+    const locationTypeSelery = parentNode.querySelector('.location-type-selery').innerText;
+    const status = parentNode.querySelector('.status').innerText;
+    const description = parentNode.querySelector('.description').innerText;
+
     parentNode.querySelector('.status').innerText = 'Interview';
+    parentNode.querySelector('.status').style.color = '#10B981';
+    parentNode.querySelector('.status').style.border = '2px solid #10B981';
+
 
 
     const cardInfo = {
@@ -94,6 +142,13 @@ allCard.addEventListener('click', function (event) {
     if (!interviewExist) {
       interViewList.push(cardInfo);
     }
+  rejectList = rejectList.filter(item => item.companyName != cardInfo.companyName);
+
+   if (currentStatus === 'interview-btn') {
+     renderReject;
+   }
+
+    calculateJobPost()
     renderInterview()
   }
 })
@@ -101,14 +156,14 @@ allCard.addEventListener('click', function (event) {
 //create element section
 function renderInterview() {
   filteredSection.innerHTML = '';
-
+ 
 
   for (let inter of interViewList) {
-    console.log(inter);
-   
+    // console.log(inter);
 
     let div = document.createElement('div');
     div.className = 'card-1 flex';
+    div.classList.add('card-1');
     div.style.justifyContent = 'space-between';
     div.innerHTML = `
             <!-- part-1  -->
@@ -119,6 +174,55 @@ function renderInterview() {
             <p class="location-type-selery">${inter.locationTypeSelery}</p>
             <button class="status btn">${inter.status}</button>
             <p class="description">${inter.description}</p>
+          </div>
+          <div class="two-btn">
+            <button
+              class="interview-btn btn">Interview</button>
+            <button
+              class="rejected-btn btn">Rejected</button>
+          </div>
+        </div>
+        <!-- part 2  -->
+        <div>
+          <img class="remove-btn" src="./media/Group 1.png" alt="delete icon" width="32px" height="32px">
+        </div>
+    `;
+
+    if (interViewList < 1) {
+      const image = document.createElement('img');
+      const imageTitle = document.createElement('p');
+      const imageDescription = document.createElement('p');
+
+      image.innerHTML = `
+            <img class="remove-btn"  src="./media/jobs.png" alt="delete icon">
+      `;
+      imageTitle.innerText = 'No Jobs Available';
+      imageDescription.innerText = 'Check back soon for new job opportunity'
+      filteredSection.appendChild(div)
+      div.appendChild(image)
+    
+    }
+
+    filteredSection.appendChild(div)
+  }
+}
+
+
+function renderReject() {
+  filteredSection.innerHTML = '';
+  for (let reject of rejectList) {
+    let div = document.createElement('div');
+    div.className = 'card-1 flex';
+    div.style.justifyContent = 'space-between';
+    div.innerHTML = `
+            <!-- part-1  -->
+        <div class="part-1">
+          <h3 class="company-name">${reject.companyName}</h3>
+          <p class="position">${reject.position}</p>
+          <div>
+            <p class="location-type-selery">${reject.locationTypeSelery}</p>
+            <button class="status btn">${reject.status}</button>
+            <p class="description">${reject.description}</p>
           </div>
           <div class="two-btn">
             <button
