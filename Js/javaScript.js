@@ -83,9 +83,11 @@ mainContanier.addEventListener('click', function (event) {
       interviewList.push(cardInfo)
     }
 
-    rejectedList = rejectedList.filter(item => item.cardName != cardInfo.cardName)
+    rejectedList = rejectedList.filter(item => item.cardName != cardInfo.cardName);
+
     calculateCount();
     renderInterview();
+
   }
   else if (event.target.classList.contains('rejected')) {
     const parenNode = event.target.parentNode.parentNode
@@ -144,12 +146,14 @@ mainContanier.addEventListener('click', function (event) {
 
 })
 
+
+
 //  function for interview button 
 function renderInterview() {
   filterSection.innerHTML = ''
   if (interviewList.length === 0) {
-    filterSection.innerHTML = `<div class="text-center bg-white p-10">
-        <img src="./Js/image/image.png" class="mx-auto mb-4 w-16"/>
+    filterSection.innerHTML = `<div class="text-center bg-white p-10 rounded">
+        <img src="./Js/image/jobs.png" class="mx-auto mb-4 w-16"/>
         <p class="text-2xl font-bold text-[#002C5C]">No jobs available</p>
         <p class="text-gray-500">Check back soon for new job opportunities</p>
       </div>`;
@@ -176,14 +180,14 @@ function renderInterview() {
                     </div>
                     <div>
                         <button
-                            class="interview border-1 border-green-500 w-[82px] h-[30px] text-[green] rounded-[5px] text-[14px] cursor-pointer">interview</button>
+                            class="interview border-2 border-green-500 w-[82px] h-[30px] text-[green] rounded-[5px] text-[14px] cursor-pointer">interview</button>
                         <button
-                            class="rejected border-1 border-red-500 w-[82px] h-[30px] text-[red] rounded-[5px] text-[14px] cursor-pointer">Rejected</button>
+                            class="rejected border-2 border-red-500 w-[82px] h-[30px] text-[red] rounded-[5px] text-[14px] cursor-pointer">Rejected</button>
                     </div>
                 </div>
                 <div>
                     <div>
-                        <button  class="delete-btn w-[30px] h-[30px] rounded-[50%] bg-red-500 md:bg-[#FFFFFF]   border border-gray-300 m-4"><i
+                        <button  class="delete-btn w-[30px] h-[30px] rounded-[50%] bg-red-500 md:bg-[#FFFFFF]   border border-gray-300 m-4 cursor-pointer"><i
                                 class="delete-btn  fa-regular fa-trash-can"></i></button>
                     </div>
                 </div>
@@ -198,8 +202,8 @@ function renderInterview() {
 function renderRejected() {
   filterSection.innerHTML = ''
   if (rejectedList.length === 0) {
-    filterSection.innerHTML = `<div class="text-center bg-white p-10">
-        <img src="./Js/image/image.png" class="mx-auto mb-4 w-16"/>
+    filterSection.innerHTML = `<div class="text-center bg-white p-10 rounded">
+        <img src="./Js/image/jobs.png" class="mx-auto mb-4 w-16"/>
         <p class="text-2xl font-bold text-[#002C5C]">No jobs available</p>
         <p class="text-gray-500">Check back soon for new job opportunities</p>
       </div>`;
@@ -225,14 +229,14 @@ function renderRejected() {
                     </div>
                     <div>
                         <button
-                            class="interview border-1 border-green-500 w-[82px] h-[30px] text-[green] rounded-[5px] text-[14px] cursor-pointer">interview</button>
+                            class="interview border-2 border-green-500 w-[82px] h-[30px] text-[green] rounded-[5px] text-[14px] cursor-pointer">interview</button>
                         <button
-                            class="rejected border-1 border-red-500 w-[82px] h-[30px] text-[red] rounded-[5px] text-[14px] cursor-pointer">Rejected</button>
+                            class="rejected border-2 border-red-500 w-[82px] h-[30px] text-[red] rounded-[5px] text-[14px] cursor-pointer">Rejected</button>
                     </div>
                 </div>
                 <div>
                     <div>
-                        <button  class="delete-btn w-[30px] h-[30px] rounded-[50%] bg-red-500 md:bg-[#FFFFFF]   border border-gray-300 m-4"><i
+                        <button  class="delete-btn w-[30px] h-[30px] rounded-[50%] bg-red-500 md:bg-[#FFFFFF]   border border-gray-300 m-4 cursor-pointer"><i
                                 class="delete-btn  fa-regular fa-trash-can"></i></button>
                     </div>
                 </div>
@@ -243,9 +247,9 @@ function renderRejected() {
   }
 }
 
-// for button filter ematy show no jobs 
+// for button filter empty show no jobs 
 function checkEmptyAll() {
-  if (allCard.children.length === 0) {
+  if (allCard.children.length == 0) {
     allCard.innerHTML = `
         <div class="text-center bg-white p-10">
         <img src="./Js/image/image.png" class="mx-auto mb-4 w-16"/>
